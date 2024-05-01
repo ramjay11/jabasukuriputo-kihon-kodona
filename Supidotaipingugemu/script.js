@@ -93,14 +93,16 @@ function resetInputField() {
 
 function startTimer() {
     console.log('Timer started'); // Add this log statement
+    //timerElement.innerText = 0;
     let seconds = 0; // Initialize seconds
-    //timerElement.innerText = seconds
-    setInterval(() => {
-        timerElement.innerText = ++seconds; // Update timer value every second
+    timerElement.innerText = seconds;
+    startTime = setInterval(() => {
+        seconds++;
+        timerElement.innerText = seconds; // Update timer value every second
     }, 1000);
-    // startTime = new Date()
+    // startTime = new Date();
     // setInterval(() => {
-    //     timer.innerText = getTimerTime()
+    //     timerElement.innerText = getTimerTime();
     // }, 1000)
 }
 
@@ -108,9 +110,9 @@ function startTimer() {
 //     return Math.floor((new Date() - startTime) / 1000)
 // }
 
-function stopTimer() {
-    clearInterval(startTime);
-}
+// function stopTimer() {
+//     clearInterval(startTime);
+// }
 
 function checkTypedText() {
     const typedText = quoteInputElement.value;
@@ -131,7 +133,8 @@ function checkTypedText() {
     });
 
     if (typedText === displayedText) {
-        stopTimer();
+        // stopTimer();
+        clearInterval(startTime); // Stop the timer when the text matches
         setTimeout(renderNewQuote, 1000); // Delay before rendering new quote
     }
 }
